@@ -20,19 +20,22 @@
         #content {
             margin-left: auto;
             margin-right: auto;
-            width: 200px;
         }
 
         svg {
-            width: 100px;
+            background-size: contain;
+            width: 100%;
+            height: 100%;
+            max-height: 100%;
         }
 
         .select-style {
             border: 1px solid #ccc;
-            width: 200px;
+            width: 100%;
             border-radius: 3px;
             overflow: hidden;
             background: #fafafa;
+            font-size: large;
         }
 
         .select-style select {
@@ -43,6 +46,7 @@
             background: transparent;
             background-image: none;
             -webkit-appearance: none;
+            text-align: center;
         }
 
         .select-style select:focus {
@@ -51,6 +55,14 @@
 
         .form-box {
             margin-bottom: 10px;
+        }
+
+        .fingers {
+            fill: #c74559;
+        }
+
+        .fret {
+            stroke: #616161;
         }
     </style>
     <div id="content">
@@ -70,6 +82,27 @@
                 <option>G#</option>
             </select>
         </div>
+
+        <div class="form-box">
+            <select id="scaleSelect" class="select-style" onchange="chordChange()" ;>
+                <option>Major</option>
+                <option>Aug</option>
+                <option>Dim</option>
+                <option>6th</option>
+                <option>Minor 6</option>
+                <option>7th</option>
+                <option>Major 7</option>
+                <option>Minor</option>
+                <option>Minor 7</option>
+                <option>Sus 2</option>
+                <option>Sus 4</option>
+                <option>7 Sus 4</option>
+                <option>9th</option>
+                <option>Add 9</option>
+                <option>Minor 9</option>
+            </select>
+        </div>
+
         <div id="chordHousing">
             <c-tab id="chordImage" chord="A" instrument="mandolin"></c-tab>
         </div>
