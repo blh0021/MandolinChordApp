@@ -1,5 +1,106 @@
+<!DOCTYPE html>
 <html>
-    <body>
-        Simple Base For App Build
-    </body>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=medium-dpi"
+    />
+    <meta name="msapplication-tap-highlight" content="no" />
+</head>
+
+<body>
+    <style>
+        body {
+            background-color: #a1bcd9;
+            text-align: center;
+        }
+
+        #content {
+            margin-left: auto;
+            margin-right: auto;
+            width: 200px;
+        }
+
+        svg {
+            width: 100px;
+        }
+
+        .select-style {
+            border: 1px solid #ccc;
+            width: 200px;
+            border-radius: 3px;
+            overflow: hidden;
+            background: #fafafa;
+        }
+
+        .select-style select {
+            padding: 5px 8px;
+            width: 200px;
+            border: none;
+            box-shadow: none;
+            background: transparent;
+            background-image: none;
+            -webkit-appearance: none;
+        }
+
+        .select-style select:focus {
+            outline: none;
+        }
+
+        .form-box {
+            margin-bottom: 10px;
+        }
+    </style>
+    <div id="content">
+        <div class="form-box">
+            <select id="chordSelect" class="select-style" onchange="chordChange()">
+                <option>A</option>
+                <option>Bb</option>
+                <option>B</option>
+                <option>C</option>
+                <option>C#</option>
+                <option>D</option>
+                <option>Eb</option>
+                <option>E</option>
+                <option>F</option>
+                <option>F#</option>
+                <option>G</option>
+                <option>G#</option>
+            </select>
+        </div>
+        <div id="chordHousing">
+            <c-tab id="chordImage" chord="A" instrument="mandolin"></c-tab>
+        </div>
+    </div>
+    <script src="tab.min.js"></script>
+    <script>
+        function addElement(chord) {
+            var el = document.getElementById("chordHousing");
+            var newElement = document.createElement("c-tab");
+            newElement.setAttribute('id', "chordImage");
+            newElement.setAttribute('chord', chord);
+            newElement.setAttribute('instrument', "mandolin");
+            el.appendChild(newElement);
+        }
+
+        function removeElement() {
+            let ci = document.getElementById("chordImage");
+            ci.parentNode.removeChild(ci);
+        }
+
+        function chordChange() {
+            let el = document.getElementById("chordSelect");
+            let chord = el.options[el.selectedIndex].text;
+            console.log(chord)
+
+            removeElement();
+            addElement(chord);
+
+            processPage();
+        }
+    </script>
+</body>
+
 </html>
