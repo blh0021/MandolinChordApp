@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.benharrington.mandolinchord" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Mandolin Chord</name>
+    <description>
+        A simple mandolin chord app.
+    </description>
+    <author email="ben@harringtonweb.com" href="http://www.benharrington.com/">
+        Ben Harrington
+    </author>
+    <content src="index.html" />
+    <icon src="icon.png" />
+    <access origin="*" />
+    <engine name="android" spec="~6.0.0" />
+    <preference name="phonegap-version" value="cli-6.5.0" />
+</widget>
