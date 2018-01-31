@@ -22,35 +22,96 @@
             margin-right: auto;
         }
 
-        svg {
-            background-size: contain;
-            width: 100%;
-            height: 100%;
-            max-height: 100%;
+        @media screen and (orientation: portrait) {
+            svg {
+                background-size: contain;
+                width: 100%;
+                height: 100%;
+                max-height: 100%;
+            }
+            .select-style {
+                border: 1px solid #ccc;
+                width: 100%;
+                border-radius: 3px;
+                overflow: hidden;
+                background: #fafafa;
+                font-size: xx-large;
+            }
+
+            .select-style select {
+                padding: 5px 8px;
+                width: 200px;
+                border: none;
+                box-shadow: none;
+                background: transparent;
+                background-image: none;
+                -webkit-appearance: none;
+                text-align: center;
+            }
+
+            .select-style select:focus {
+                outline: none;
+            }
+
+            .footer {
+                margin-top: 3em;
+            }
+
+            .footer a {
+                text-decoration: none;
+                color: #616161;
+                font-weight: bold;
+            }
         }
 
-        .select-style {
-            border: 1px solid #ccc;
-            width: 100%;
-            border-radius: 3px;
-            overflow: hidden;
-            background: #fafafa;
-            font-size: xx-large;
-        }
+        @media screen and (orientation: landscape) {
+            #chordHousing {
+                height: 40%;
+            }
 
-        .select-style select {
-            padding: 5px 8px;
-            width: 200px;
-            border: none;
-            box-shadow: none;
-            background: transparent;
-            background-image: none;
-            -webkit-appearance: none;
-            text-align: center;
-        }
+            svg {
+                background-size: contain;
+                width: 50%;
+            }
 
-        .select-style select:focus {
-            outline: none;
+            .form {
+                float: left;
+                width: 40%;
+            }
+
+            .select-style {
+                border: 1px solid #ccc;
+                width: 100%;
+                border-radius: 3px;
+                overflow: hidden;
+                background: #fafafa;
+                font-size: xx-large;
+            }
+
+            .select-style select {
+                padding: 5px 8px;
+                width: 100%;
+                border: none;
+                box-shadow: none;
+                background: transparent;
+                background-image: none;
+                -webkit-appearance: none;
+                text-align: center;
+            }
+
+            .select-style select:focus {
+                outline: none;
+            }
+
+            .footer {
+                margin-top: 1em;
+            }
+
+            .footer a {
+                text-decoration: none;
+                color: #616161;
+                font-weight: bold;
+            }
         }
 
         .form-box {
@@ -64,69 +125,63 @@
         .fret {
             stroke: #616161;
         }
-
-        .footer {
-            margin-top: 3em;
-        }
-
-        .footer a {
-            text-decoration: none;
-            color: #616161;
-            font-weight: bold;
-        }
     </style>
     <div id="content">
-        <div class="form-box">
-            <select id="chordSelect" class="select-style" onchange="chordChange()">
-                <option>A</option>
-                <option>Bb</option>
-                <option>B</option>
-                <option>C</option>
-                <option>C#</option>
-                <option>D</option>
-                <option>Eb</option>
-                <option>E</option>
-                <option>F</option>
-                <option>F#</option>
-                <option>G</option>
-                <option>G#</option>
-            </select>
-        </div>
+        <div class="form">
+            <div class="form-box">
+                <select id="chordSelect" class="select-style" onchange="chordChange()">
+                    <option>A</option>
+                    <option>Bb</option>
+                    <option>B</option>
+                    <option>C</option>
+                    <option>C#</option>
+                    <option>D</option>
+                    <option>Eb</option>
+                    <option>E</option>
+                    <option>F</option>
+                    <option>F#</option>
+                    <option>G</option>
+                    <option>G#</option>
+                </select>
+            </div>
 
-        <div class="form-box">
-            <select id="scaleSelect" class="select-style" onchange="chordChange()" ;>
-                <option>Major</option>
-                <option>Aug</option>
-                <option>Dim</option>
-                <option>6th</option>
-                <option>Minor 6</option>
-                <option>7th</option>
-                <option>Major 7</option>
-                <option>Minor</option>
-                <option>Minor 7</option>
-                <option>Sus 2</option>
-                <option>Sus 4</option>
-                <option>7 Sus 4</option>
-                <option>9th</option>
-                <option>Add 9</option>
-                <option>Minor 9</option>
-            </select>
+            <div class="form-box">
+                <select id="scaleSelect" class="select-style" onchange="chordChange()" ;>
+                    <option>Major</option>
+                    <option>Minor</option>
+                    <option>Aug</option>
+                    <option>Dim</option>
+                    <option>6th</option>
+                    <option>Minor 6</option>
+                    <option>7th</option>
+                    <option>Major 7</option>
+                    <option>Minor 7</option>
+                    <option>Sus 2</option>
+                    <option>Sus 4</option>
+                    <option>7 Sus 4</option>
+                    <option>9th</option>
+                    <option>Add 9</option>
+                    <option>Minor 9</option>
+                </select>
+            </div>
         </div>
-
         <div id="chordHousing">
             <c-tab id="chordImage" chord="A" instrument="mandolin"></c-tab>
         </div>
 
-        <div class="footer"><a href="https://paypal.me/BenHarrington">Donate</a></div>
+        <div class="footer">
+            <a href="https://paypal.me/BenHarrington">Donate</a>
+        </div>
     </div>
     <script src="tab.min.js"></script>
     <script>
-        function addElement(chord) {
-            var el = document.getElementById("chordHousing");
-            var newElement = document.createElement("c-tab");
+        function addElement(chord, scale) {
+            let el = document.getElementById("chordHousing");
+            let newElement = document.createElement("c-tab");
             newElement.setAttribute('id', "chordImage");
             newElement.setAttribute('chord', chord);
             newElement.setAttribute('instrument', "mandolin");
+            newElement.setAttribute('scale', scale);
             el.appendChild(newElement);
         }
 
@@ -138,10 +193,28 @@
         function chordChange() {
             let el = document.getElementById("chordSelect");
             let chord = el.options[el.selectedIndex].text;
-            console.log(chord)
 
+            let sel = document.getElementById("scaleSelect");
+            let scaleMap = {
+                "Major": "major",
+                "Minor": "minor",
+                "Aug": "aug",
+                "Dim": "dim",
+                "6th": "6th",
+                "Minor 6": "min 6",
+                "7th": "7th",
+                "Major 7": "major 7",
+                "Minor 7": "minor 7",
+                "Sus 2": "sus 2",
+                "Sus 4": "sus 4",
+                "7 Sus 4": "7 sus 4",
+                "9th": "9th",
+                "Add 9": "add 9",
+                "Minor 9": "minor 9"
+            }
+            let scale = scaleMap[sel.options[sel.selectedIndex].text];
             removeElement();
-            addElement(chord);
+            addElement(chord, scale);
 
             processPage();
         }
